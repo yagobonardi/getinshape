@@ -8,3 +8,27 @@ document.querySelectorAll('.exercise-checkbox').forEach(checkbox => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const checkboxes = document.querySelectorAll(".exercise-checkbox");
+    const exerciseList = document.querySelector(".exercise-list");
+
+    const congratsMessage = document.createElement("div");
+    congratsMessage.textContent = "🎉 Congratulations on completing! 🎉";
+    congratsMessage.style.display = "none";
+    congratsMessage.style.fontSize = "1.5rem";
+    congratsMessage.style.color = "#28a745";
+    congratsMessage.style.textAlign = "center";
+    document.body.appendChild(congratsMessage);
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+            const allChecked = Array.from(checkboxes).every((box) => box.checked);
+
+            if (allChecked) {
+                exerciseList.style.display = "none";
+                congratsMessage.style.display = "block";
+            }
+        });
+    });
+});
